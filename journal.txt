@@ -30,3 +30,146 @@
  - Because everyone is doing it? Oh Sanne, you know better than that reasoning.
 
  - Let me explain to you how cool a database is!
+                                                                Fri Sep 12 09:16
+================================================================================
+  Database -> data service -> applicatie
+    -  Rest server want 
+        -  Database -> service -> server cache -> (andere caches) -> private cache -> applicatie
+
+  Jepsen
+    -  En daarom is idempotency dus zo handig
+
+  Backups
+
+  Data is data en what you see is what you get
+    -  Is bijboorbeeld niet zo bij revision contnrol systems waar het data plus een unieke identifier is die de geschiedenis waarborgd.
+    -  Daar is state dus, state + process
+    -  State is vele male simpeler als je het proces eruit kan werken, of in de state kan opnemen zodat geldt: ongeacht hoe je bij deze state komt het is dezelfde state
+    -  Igv het vcs systeem zou je van de state het gehele object kunnen maken inclusief de voorgaamde versies. Dit heeft weer zojn eigen probelemen.
+    -  Je merkt of het een verschil is als je een entity id vetrouwt boven een vergelijking van de object waardes
+        -  Zorg dan iig dat de entity id een onderdeel is van de representatie
+
+  Database + state en historie
+    -  Coherente responses
+
+  Rest
+    -  Dat boek van thoughtworks en het rest cookbook
+    -  Idempotent
+    -  Patch atomic
+    -  Webmachine http handler
+    -  Linking en embedding
+    -  Caching
+        -  Invalidation on post
+        -  Iis misconfiguratie
+    -  Link contracten
+    -  Als je met links bepaalt of een gebruiker iets mag of niet vary'd de resource per gebruiker.
+    -  Als je met links bepaalt of een gebruiker iets kan of niet heb je een generatable interface vereist (of faux-ontkoppeling)
+    -  Eisen voor media types
+        -  Te lezen zonder tooling
+        -  Embedding
+        -  Http (Cache) friendly
+        -  Flexibel voor alle domein schema's (namespacing, geen forced properties)
+        -  Edge cases in de spec behandeld
+        -  Spec simpel te lezen
+        -  Some of the things I talk about when assessing media type designs are:
+
+Independent Implementations
+A design that has a high number of independent implementations can be a sign that the design is easy to work with and that it has a broad reach/appeal. It may also be a sign that the design itself is well understood and stable. This notion is based on David Clark's notion of "rough concensus and running code"[0] as a guide for good standards review
+
+Inter-operable Implementations
+I also think that the number of inter-operable implementations is a worthwhile measure. IOW, can two people who never met before each implement the same design and have their applications work together? This can be an indicatino of what Stu Charlton calls "serendipitous reuse"[1] Some designs don't have this as a goal; instead they are aiming for clean design between two "known" parties. But I still think considering interop is a good thing.
+
+Unexpected Implementations
+I also encourage folks to consider whether the design results in any "unexpected uses" - something that was not first thought of. We've all experienced this, I think. You're working with an app, a coding framework, programming language, etc and suddenly you notice something totally novel and say "Wow! I didn't know you could do that with X!" Donald Norman refers to this in the last line of his excellent 2min video on "Affordances."[2]
+
+hope this helps.
+
+[0] http://en.wikipedia.org/wiki/David_D._Clark
+[1] http://www.stucharlton.com/blog/archives/000165.html
+[2] https://www.youtube.com/watch?v=NK1Zb_5VxuM
+
+        -
+    -  Mediatypes
+        -  No embedding
+            -  Datomic json type
+                -  No embedding
+            -  Json hyperschema
+                -  No embedding
+            -  Mason
+                -  No embeds
+                -  Specifies actions
+            -  Percolator's media type
+                -  Not specified
+                -  A Bit like hal
+                -  No embeds
+        -  Hal
+            -  Embeds
+            -  Recursive embeds
+            -  Links
+            -  Link templates
+            -  Spec is in flux
+            -  Doesn't specify actions, expects you to document them and use http verbs on resources
+            -  Url templates
+        -  Siren
+            -  Allows embedding
+            -  Allows actions
+            -  Distinguishes sub entities from navigational links
+        -  Collection+json
+            -  Beetje gek in dat alles altijd een collectie is
+            -  Documentatie lastig te grokken
+            -  Zowel queries al writes zijn machine parseable
+                -  Maar je maakt hoogstwaarschijnlijk assumpties in je code dus dit vind ik een beetje eng
+            -  Sterk gelinked aan standaard http methodes (atom)
+        -  Json api
+            -  No recursive embeds
+            -  Specifies actions a bit more than hal, but doesnt't allow the media result to specify actions
+            -  Url templates
+        -  Json ld
+            -  Grootste
+            -  Best uitgedacht
+            -  Voornamelijk
+                -  Support voor namespacing e.d.
+                -  Support voor custom properties en property interop
+            -  Maar ook support voor embedding en linking
+            -  Geen write protocol
+            -  Gebaseerd op rdf en niet op oop of relationele schema's
+            -  Groot, breed, niet zomaar een standards compliant implementatie voor te schrijven.
+    -  Paging
+    -  Changing, patch vs put of a subresource
+    -  Adding items to lists
+        -  Post a link to that resource, or the data if you have no link yet
+        -  Put a new resource with the link added
+        -  In endpoint you can thus provide an addtocollection (path to collection and resource or url) and an changevalue (set of paths to non-collections and new values)
+        -  Patching the xth item in an array is easy. Just patch the item itself
+    -  Discoverability of action, options is not cacheable, so you dont want an options request for each resource thisis not to help us, but more because of hostorical implementation requirements http://stackoverflow.com/questions/13073313/http-options-not-cacheable#comment17798059_13081138
+
+  Cqrs
+
+  Crdt
+
+  State bij de client
+    -  Macaroon
+        -  Caching en cookies en security
+    -  Pagination
+
+  At scale, ik schijn niet te hoeven zeggen wat er schaalt
+
+  Paul irish over tcp slowsyart
+    -  Web page test filmstrip view
+    -  The browser preloader is pretty smart, but for that it needs to be in the html. Js client side apps throw all that away
+
+
+  Dus: we knallen er een server voor die simpeler is dan een database zodat hij meer connecties aankan. Hoe maken we hem simpeler? Door hem stateless te maken! Welke features van de database houden we dan over? Geen!
+    -  Optimistic lockig
+    -  Lww
+
+  Hoe kan het beter? Optimistic locking met etags.
+    -  Data synchroon ophalen met etags en urls
+
+  Sidebar, je heb orms die optimistic locking los implementeren om crossd atabase te kunnen zijn. Is dat niet het failliet van de it sector? Dat mensen phd waardige algoritmes schrijven en dat mensen die databases dan gebruiken en daar dan een orm óverheen leggen die iemand tussen twee autoraces door in elkaar heeft gekotst die dat allemaal negeert?
+
+  Wacht ff. Spoel is even terug, zei ik net nou dat databases de ouder ecords niet direct weggooien? Weet je hoeveel moeite we doen om dat te herimplementeren?
+    -  Datomic, rethinkdb, brightstar
+    -  Papertrail
+
+  Maar goed, stateless verhoogt de performance. Best cool toch? Stateless state :)
