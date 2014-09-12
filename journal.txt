@@ -1,0 +1,32 @@
+ - Rambling thoughts on data
+
+ - This is Sanne
+
+ - And this is Renée
+
+ - Sanne built an application for Renée
+        - (Using javascript)
+
+ - Renée thinks Sanne is very cool
+
+ - Sanne wants build an app for lots of friends
+
+ - But how does that work? Will all the apps comunicate with each other? That sounds hard!
+
+ - Sanne has an idea.
+
+ - He builds a database and all the apps comunicate with the same database.
+
+ - Oh Sanne, you're so smart!
+
+ - Wait, what's that? Sanne has another idea.
+
+ - Hmm, I wonder what it is
+
+ - Sanne adds an extra application on the server? A Http application!
+
+ - Why would you do that Sanne? Why not connect directly to the database?
+
+ - Because everyone is doing it? Oh Sanne, you know better than that reasoning.
+
+ - Let me explain to you how cool a database is!
