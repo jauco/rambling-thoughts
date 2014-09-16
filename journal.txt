@@ -177,3 +177,6 @@ hope this helps.
 ================================================================================
 
  - [ ] Allow grabbing of all links for people who don't support the presentation.
+                                                                Tue Sep 16 12:21
+================================================================================
+ - [ ] zorg dat je slides makkelijk een voor een kan weergeven
