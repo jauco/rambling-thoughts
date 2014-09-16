@@ -173,3 +173,7 @@ hope this helps.
     -  Papertrail
 
   Maar goed, stateless verhoogt de performance. Best cool toch? Stateless state :)
+                                                                Fri Sep 12 09:16
+================================================================================
+
+ - [ ] Allow grabbing of all links for people who don't support the presentation.

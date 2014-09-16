@@ -1,33 +1,10 @@
 /*
-    So you like the style of impress.js demo?
-    Or maybe you are just curious how it was done?
-
-    You couldn't find a better place to find out!
-
-    Welcome to the stylesheet impress.js demo presentation.
-
-    Please remember that it is not meant to be a part of impress.js and is
-    not required by impress.js.
-    I expect that anyone creating a presentation for impress.js would create
-    their own set of styles.
-
-    But feel free to read through it and learn how to get the most of what
-    impress.js provides.
-
-    And let me be your guide.
-
-    Shall we begin?
-*/
-
-
-/*
     We start with a good ol' reset.
     That's the one by Eric Meyer http://meyerweb.com/eric/tools/css/reset/
 
     You can probably argue if it is needed here, or not, but for sure it
     doesn't do any harm and gives us a fresh start.
 */
-
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -74,6 +51,16 @@ table {
     border-spacing: 0;
 }
 
+.impress-not-supported #impress {
+    display: none;
+}
+.fallback-message {
+    display: none;
+}
+.impress-not-supported .fallback-message {
+    display: block;
+}
+
 /*
     Now here is when interesting things start to appear.
 
@@ -84,15 +71,21 @@ table {
 body {
     font-family: 'PT Sans', sans-serif;
     min-height: 740px;
-
-    background: rgb(215, 215, 215);
-    background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(rgb(240, 240, 240)), to(rgb(190, 190, 190)));
-    background: -webkit-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
-    background:    -moz-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
-    background:     -ms-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
-    background:      -o-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
-    background:         radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+    background: url(./noise-purple);
 }
+
+.introSlide img {
+    width: 100%;
+}
+
+.andThen.future {
+    display: none;
+}
+
+.andThen.present, .andThen.past {
+    display: inherit;
+}
+
 
 /*
     Now let's bring some text styles back ...
