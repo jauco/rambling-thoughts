@@ -88,17 +88,26 @@ body {
 
 .step.introSlide {
     width: 1024px;
+    height: 768px;
     padding: 0;
 }
 
-.introSlide img {
-    width: 100%;
+.introSlide {
+    /*background-image: url(../img/charlie-machine.gif)*/
+    background: gray;
 }
 
 body.impress-on-step-1 {
     background: black;
 }
 
+.step .impress-s0, .step .impress-s1, .step .impress-s2, .step .impress-s3, .step .impress-s4, .step .impress-s5, .step .impress-s6, .step .impress-s7 {
+    display: none;
+}
+
+.step.impress-s0 .impress-s0, .step.impress-s1 .impress-s1, .step.impress-s2 .impress-s2, .step.impress-s3 .impress-s3, .step.impress-s4 .impress-s4, .step.impress-s5 .impress-s5, .step.impress-s6 .impress-s6, .step.impress-s7 .impress-s7 {
+    display: inherit;
+}
 
 /*
     Now let's bring some text styles back ...

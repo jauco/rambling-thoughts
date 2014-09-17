@@ -187,3 +187,58 @@ hope this helps.
      Dat is niet echt te fixen als je nonlineaire paden wil ondersteunen. Wat als je naar step 2 springt. Is step 4 dan gewoon een reeds gepasseerde node, of zijn we terug aan het gaan en moet stap4 weer als unseen gemarkeerd worden? Het beste is om de presentatie zo weer te geven dat dit altijd kan.
  - [x] zorg dat je de full screen width kan gebruiken.
     impress.js guarnatees that a scare of 1024x768 is shown centered on screen it wont scale it up if the viewport is bigger. You can safely use px based metrics in scaling your images and texts.
+
+                                                                Wed Sep 17 08:26
+================================================================================
+
+- [ ] een betere manier van substeps
+
+    Plat
+    * als de .andThen nog niet current is geweest moet hij hidden zijn.
+    * als een andThen past is en volgt op de 
+    * als de .andThen past is, maar er zijn nog .andThen s op de step dan moet hij nog niet als past gestyled worden
+    * als de we naar een niet andThen slide gaan mag alles past zijn
+    * als we terug stappen moeten de andThen s die volgen op de huidige andThen verstopt zijn
+
+    <div class="step introSlide" data-x="0" data-y="0">
+        <img src="./img/charlie-machine.gif">
+    </div>
+
+    <div class="step andThen">
+        <h1>Blah</h1>
+    </div>
+    <div class="step andThen">
+        <h2>blah</h2>
+    </div>
+
+   nested
+   - als je een step aanmaakt kun je daar steps in stoppen
+   - een step wordt als current gestyled als er een step inzit die current is of als een van zijn broertjes current is.
+   - een subsstep is hidden als hij future is, of als een preceding sibling current is of als de substep van een preceding sibling current is
+
+    <div class="step introSlide" data-x="0" data-y="0">
+        <img src="./img/charlie-machine.gif">
+        <div class="step andThen">
+            <h1>Blah</h1>
+        </div>
+        <div class="step andThen">
+            <h2>blah</h2>
+        </div>
+    </div>
+
+
+   met classes
+   - een step die substeps heeft cycled door een aantal classes heen. De substeps kunnen zorgen dat ze bij de juiste classe op de juiste manier getoond worden. 
+   - classes worden alleen toegevoegd, en bij het omgekeerd aflopen weer verwijderd
+
+   <div class="step introSlide" data-x="0" data-y="0" data-steps="1">
+        <img src="./img/charlie-machine.gif">
+        <h1 class="s0">Blah</h1>
+        <h2 class="s1">blah</h2>
+    </div>
+
+s1 s1 {
+    display: block
+}
+
+gekozen voor met classes

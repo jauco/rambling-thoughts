@@ -152,9 +152,7 @@
         var hScale = window.innerHeight / config.height,
             wScale = window.innerWidth / config.width,
             scale = hScale > wScale ? wScale : hScale;
-        console.log("window.innerHeight (" + window.innerHeight + ") / config.height (" + config.height + ") = " + hScale);
-        console.log("window.innerWidth (" + window.innerWidth + ") / config.width (" + config.width + ") = " + wScale);
-        console.log("scale = " + scale);
+
         if (config.maxScale && scale > config.maxScale) {
             scale = config.maxScale;
         }
@@ -564,6 +562,46 @@
             
             return goto(next);
         };
+
+        var disclose = function () {
+            var classes = activeStep.classList;
+            var steps = +activeStep.dataset["steps"];
+            if (steps /* is a non-null, non-undefined, non-zero, numeric value*/) {
+                var stepTaken = false;
+                for (var i = 0; i < steps; i += 1) {
+                    if (!classes.contains("impress-s" + i)) {
+                        activeStep.classList.add("impress-s" + i);
+                        stepTaken = true;
+                        break;
+                    }
+                }
+                if (!stepTaken) {
+                    next();
+                }
+            } else {
+                next();
+            }
+        }
+
+        var undisclose = function () {
+            var classes = activeStep.classList;
+            var steps = +activeStep.dataset["steps"];
+            if (steps /* is a non-null, non-undefined, non-zero, numeric value*/) {
+                var stepTaken = false;
+                for (var i = steps-1; i >= 0; i -= 1) {
+                    if (classes.contains("impress-s" + i)) {
+                        activeStep.classList.remove("impress-s" + i);
+                        stepTaken = true;
+                        break;
+                    }
+                }
+                if (!stepTaken) {
+                    prev();
+                }
+            } else {
+                prev();
+            }
+        }
         
         // Adding some useful classes to step elements.
         //
@@ -636,7 +674,9 @@
             init: init,
             goto: goto,
             next: next,
-            prev: prev
+            prev: prev,
+            undisclose: undisclose,
+            disclose: disclose
         });
 
     };
@@ -706,13 +746,17 @@
             if ( event.keyCode === 9 || ( event.keyCode >= 32 && event.keyCode <= 34 ) || (event.keyCode >= 37 && event.keyCode <= 40) ) {
                 switch( event.keyCode ) {
                     case 33: // pg up
-                    case 37: // left
                     case 38: // up
                              api.prev();
                              break;
-                    case 32: // space
-                    case 34: // pg down
+                    case 37: // left
+                             api.undisclose();
+                             break;
                     case 39: // right
+                    case 32: // space
+                             api.disclose();
+                             break;
+                    case 34: // pg down
                     case 40: // down
                              api.next();
                              break;
