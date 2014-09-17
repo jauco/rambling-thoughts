@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=1024" />
+    <meta name="viewport" content="width=1024" /><!-- this should match impress.js width-->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <title>OGD Developer Night. Rambling thoughts on Data by Jauco</title>
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
@@ -12,7 +12,8 @@
 <div class="fallback-message">
     <p>Your browser doesn't support the features required by this presentation. Sorry. The links to the information are shown below:
 </div>
-<div id="impress">
+<!-- impress.js guarnatees that a scare of 1024x768 is shown centered on screen it wont scale it up if the viewport is bigger. You can safely use px based metrics in scaling your images and texts.-->
+<div id="impress" width="2014" height="768" max-scale="1">
 
     <div class="step introSlide" data-x="0" data-y="0">
         <img src="./img/charlie-machine.gif">
@@ -22,13 +23,12 @@
         <h1>Blah</h1>
     </div>
     <div class="step andThen">
-        <h2>Blah blah</h2>
+        <h2>blah</h2>
     </div>
 
 </div>
 <script>
     (function () {
-        debugger;
         var steps = document.getElementsByClassName("step");
         for (var i = 0; i < steps.length; i ++ ) {
             var v = steps[i];

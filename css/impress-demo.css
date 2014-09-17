@@ -51,6 +51,9 @@ table {
     border-spacing: 0;
 }
 
+
+
+
 .impress-not-supported #impress {
     display: none;
 }
@@ -70,12 +73,7 @@ table {
 */
 body {
     font-family: 'PT Sans', sans-serif;
-    min-height: 740px;
-    background: url(./noise-purple);
-}
-
-.introSlide img {
-    width: 100%;
+    background: url(../img/noise-purple.png);
 }
 
 .andThen.future {
@@ -84,6 +82,21 @@ body {
 
 .andThen.present, .andThen.past {
     display: inherit;
+}
+
+/* Step 1 */
+
+.step.introSlide {
+    width: 1024px;
+    padding: 0;
+}
+
+.introSlide img {
+    width: 100%;
+}
+
+body.impress-on-step-1 {
+    background: black;
 }
 
 

@@ -180,3 +180,10 @@ hope this helps.
                                                                 Tue Sep 16 12:21
 ================================================================================
  - [ ] zorg dat je slides makkelijk een voor een kan weergeven
+                                                                Tue Sep 16 15:12
+================================================================================
+     - [x] beetje gek dat hij "past" plakt op steps die nog in de toekomst liggen als je terugscrolled.
+
+     Dat is niet echt te fixen als je nonlineaire paden wil ondersteunen. Wat als je naar step 2 springt. Is step 4 dan gewoon een reeds gepasseerde node, of zijn we terug aan het gaan en moet stap4 weer als unseen gemarkeerd worden? Het beste is om de presentatie zo weer te geven dat dit altijd kan.
+ - [x] zorg dat je de full screen width kan gebruiken.
+    impress.js guarnatees that a scare of 1024x768 is shown centered on screen it wont scale it up if the viewport is bigger. You can safely use px based metrics in scaling your images and texts.

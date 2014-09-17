@@ -152,7 +152,9 @@
         var hScale = window.innerHeight / config.height,
             wScale = window.innerWidth / config.width,
             scale = hScale > wScale ? wScale : hScale;
-        
+        console.log("window.innerHeight (" + window.innerHeight + ") / config.height (" + config.height + ") = " + hScale);
+        console.log("window.innerWidth (" + window.innerWidth + ") / config.width (" + config.width + ") = " + wScale);
+        console.log("scale = " + scale);
         if (config.maxScale && scale > config.maxScale) {
             scale = config.maxScale;
         }
@@ -254,7 +256,7 @@
         var config = null;
         
         // scale factor of the browser window
-        var windowScale = null;        
+        var windowScale = null;
         
         // root presentation elements
         var root = byId( rootId );
@@ -438,7 +440,6 @@
             window.scrollTo(0, 0);
             
             var step = stepsData["impress-" + el.id];
-            
             if ( activeStep ) {
                 activeStep.classList.remove("active");
                 body.classList.remove("impress-on-" + activeStep.id);
@@ -709,7 +710,6 @@
                     case 38: // up
                              api.prev();
                              break;
-                    case 9:  // tab
                     case 32: // space
                     case 34: // pg down
                     case 39: // right
