@@ -186,7 +186,7 @@
         body.className += " impress-not-supported ";
     } else {
         body.classList.remove("impress-not-supported");
-        body.classList.add("impress-supported");
+        body.classList.add("supported");
     }
     
     // GLOBALS AND DEFAULTS
@@ -558,9 +558,11 @@
         // `next` API function goes to next step (in document order)
         var next = function () {
             var next = steps.indexOf( activeStep ) + 1;
-            next = next < steps.length ? steps[ next ] : steps[ 0 ];
-            
-            return goto(next);
+            if (next < steps.length) {
+                return goto(steps[ next ]);
+            } else {
+                return;
+            }
         };
 
         var disclose = function () {
@@ -569,8 +571,8 @@
             if (steps /* is a non-null, non-undefined, non-zero, numeric value*/) {
                 var stepTaken = false;
                 for (var i = 0; i < steps; i += 1) {
-                    if (!classes.contains("impress-s" + i)) {
-                        activeStep.classList.add("impress-s" + i);
+                    if (!classes.contains("s" + i)) {
+                        activeStep.classList.add("s" + i);
                         stepTaken = true;
                         break;
                     }
@@ -589,8 +591,8 @@
             if (steps /* is a non-null, non-undefined, non-zero, numeric value*/) {
                 var stepTaken = false;
                 for (var i = steps-1; i >= 0; i -= 1) {
-                    if (classes.contains("impress-s" + i)) {
-                        activeStep.classList.remove("impress-s" + i);
+                    if (classes.contains("s" + i)) {
+                        activeStep.classList.remove("s" + i);
                         stepTaken = true;
                         break;
                     }

@@ -76,37 +76,53 @@ body {
     background: url(../img/noise-purple.png);
 }
 
-.andThen.future {
+
+.step .s0,
+.step .s1,
+.step .s2,
+.step .s3,
+.step .s4,
+.step .s5,
+.step .s6,
+.step .s7,
+.step .s8,
+.step .s9,
+.step .s10,
+.step .s11
+{
     display: none;
 }
 
-.andThen.present, .andThen.past {
-    display: inherit;
+.step.s0 .s0,
+.step.s1 .s1,
+.step.s2 .s2,
+.step.s3 .s3,
+.step.s4 .s4,
+.step.s5 .s5,
+.step.s6 .s6,
+.step.s7 .s7,
+.step.s8 .s8,
+.step.s9 .s9,
+.step.s10 .s10,
+.step.s11 .s11
+{
+    display: inline;
 }
 
-/* Step 1 */
-
-.step.introSlide {
-    width: 1024px;
-    height: 768px;
-    padding: 0;
-}
-
-.introSlide {
-    /*background-image: url(../img/charlie-machine.gif)*/
-    background: gray;
-}
-
-body.impress-on-step-1 {
-    background: black;
-}
-
-.step .impress-s0, .step .impress-s1, .step .impress-s2, .step .impress-s3, .step .impress-s4, .step .impress-s5, .step .impress-s6, .step .impress-s7 {
+.step.s0 .ns0,
+.step.s1 .ns1,
+.step.s2 .ns2,
+.step.s3 .ns3,
+.step.s4 .ns4,
+.step.s5 .ns5,
+.step.s6 .ns6,
+.step.s7 .ns7,
+.step.s8 .ns8,
+.step.s9 .ns9,
+.step.s10 .ns10
+.step.s11 .ns11
+{
     display: none;
-}
-
-.step.impress-s0 .impress-s0, .step.impress-s1 .impress-s1, .step.impress-s2 .impress-s2, .step.impress-s3 .impress-s3, .step.impress-s4 .impress-s4, .step.impress-s5 .impress-s5, .step.impress-s6 .impress-s6, .step.impress-s7 .impress-s7 {
-    display: inherit;
 }
 
 /*
@@ -139,18 +155,6 @@ a:focus {
     text-shadow: -1px -1px 2px rgba(100,100,100,0.5);
 }
 
-/*
-    Because the main point behind the impress.js demo is to demo impress.js
-    we display a fallback message for users with browsers that don't support
-    all the features required by it.
-
-    All of the content will be still fully accessible for them, but I want
-    them to know that they are missing something - that's what the demo is
-    about, isn't it?
-
-    And then we hide the message, when support is detected in the browser.
-*/
-
 .fallback-message {
     font-family: sans-serif;
     line-height: 1.3;
@@ -168,7 +172,7 @@ a:focus {
     margin-bottom: 10px;
 }
 
-.impress-supported .fallback-message {
+.supported .fallback-message {
     display: none;
 }
 
@@ -180,9 +184,8 @@ a:focus {
 
 .step {
     position: relative;
-    width: 900px;
-    padding: 40px;
-    margin: 20px auto;
+    width: 1024px;
+    height: 768px;
 
     -webkit-box-sizing: border-box;
     -moz-box-sizing:    border-box;
@@ -194,6 +197,82 @@ a:focus {
     font-size: 48px;
     line-height: 1.5;
 }
+
+.step.padded {
+    width: 1004px;
+    height: 748px;
+    margin:; 10px;
+}
+
+
+/* Step 1 */
+
+#introSlide {
+    background-image: url(../img/charlie-machine.gif);
+    background-size: 100%;
+}
+#introSlide h1{
+    color:orange;
+}
+
+body.impress-on-introSlide {
+    background: black;
+}
+
+/*cartoons*/
+.step.cartoon .sanne {
+    display: block;
+}
+.step.cartoon .rene {
+    display: block;
+}
+.step.cartoon .loooovvve {
+    display: block;
+}
+.step.cartoon .app {
+    display: block;
+}
+
+.step.cartoon .sanne, .step.cartoon .rene {
+    background-image: url(../img/person.png);
+    background-size: 100%;
+    width: 100px;
+    height: 100px;
+    color: transparent;
+}
+
+.step.cartoon .sanne {
+    position: absolute;
+    bottom: 10px;
+    left: 474px;
+}
+.step.cartoon .rene {
+    position: absolute;
+    right: 10px;
+    top: 300px;
+}
+.step.cartoon .loooovvve {
+    background-image: url(../img/heart.png);
+    background-size: 100%;
+    width: 50px;
+    height: 41px;
+    top: -76px;
+    position: relative;
+    left: 73px;
+}
+
+.step.cartoon .app {
+    background-image: url(../img/app.png);
+    background-size: 100%;
+    width: 100px;
+    height: 218px;
+    position: absolute;
+    right: 200px;
+    top: 240px;
+    color: transparent;
+}
+
+
 
 /*
     ... and we enhance the styles for impress.js.
